@@ -17,7 +17,9 @@ interface Config {
   meta?: Metadata
 }
 
-export const defineConfig = (config: Config) => {
+export const defineConfig = (
+  config: Config,
+): { id: string; meta: Metadata } => {
   return {
     id: config.id,
     meta: {
