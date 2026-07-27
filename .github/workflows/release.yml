@@ -43,4 +43,4 @@ jobs:
         with:
           tag_name: v${{ steps.pkg.outputs.version }}
           name: Release v${{ steps.pkg.outputs.version }}
-          files: dist/user.js
+          files: dist/*

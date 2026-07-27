@@ -3,7 +3,7 @@ import UnpluginTypia from '@ryoppippi/unplugin-typia/bun'
 import { mkdir } from 'fs/promises'
 import { readFile } from 'fs/promises'
 import { writeFile } from 'fs/promises'
-import userscriptConfig from './userscript.config'
+import userscriptConfig from '../userscript.config'
 import { render } from '@jeiea/userscript-metadata'
 
 await spawn({ cmd: ['bun', 'run', 'check'] }).exited
@@ -20,8 +20,10 @@ for (const dir of ['out', 'dist']) {
   await mkdir(dir, { recursive: true })
 }
 
-const meta = render(userscriptConfig)
+const meta = render(userscriptConfig.meta)
 
 const body = await readFile('out/index.js')
 
-await writeFile('dist/user.js', meta + '\n' + body)
+const file = `dist/${userscriptConfig.id}.user.js`
+
+await writeFile(file, meta + '\n' + body)

@@ -1,14 +1,11 @@
-import pack from './package.json' with { type: 'json' }
-import { type Metadata } from '@jeiea/userscript-metadata'
+import { defineConfig } from './lib/config'
 
-const config: Metadata = {
-  '@name': [pack.name],
-  '@namespace': [pack.homepage],
-  '@version': [pack.version],
-  '@author': [pack.author.name],
-  '@description': [pack.description],
-  '@match': ['*://*/*'],
-  '@grant': [],
-}
-
-export default config
+export default defineConfig({
+  id: 'bun-userscript-template',
+  name: 'Bun Userscript Template',
+  description: 'Template for building browser userscripts with Bun.',
+  
+  // meta: {
+  //   '@name': ['Bun Userscript Template'],
+  // },
+})

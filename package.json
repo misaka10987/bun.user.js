@@ -2,7 +2,7 @@
   "name": "template",
   "description": "",
   "version": "0.1.0",
-  "homepage": "https://github.com/misaka10987/ap-classroom-answer-parser",
+  "homepage": "https://github.com/misaka10987/bun.user.js",
   "author": {
     "name": "misaka10987",
     "email": "misaka10987@outlook.com"
@@ -21,7 +21,7 @@
   },
   "scripts": {
     "check": "bun x tsc --noEmit",
-    "build": "bun build.ts",
+    "build": "bun run lib/build.ts",
     "prepare": "ts-patch install"
   },
   "dependencies": {
