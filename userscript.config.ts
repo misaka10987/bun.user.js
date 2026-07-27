@@ -8,7 +8,7 @@ const config: Metadata = {
   '@author': [pack.author.name],
   '@description': [pack.description],
   '@match': ['*://*/*'],
-  '@grant': ['GM_registerMenuCommand', 'GM.openInTab'],
+  '@grant': [],
 }
 
 export default config

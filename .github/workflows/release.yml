@@ -1,4 +1,4 @@
-name: Auto Release
+name: Release
 
 on:
   push:
@@ -13,11 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node and Bun
-        uses: oven-sh/setup-bun@v1
+      - uses: oven-sh/setup-bun@v1
 
       - name: Get version from package.json
         id: pkg
@@ -40,8 +38,7 @@ jobs:
         if: steps.check_tag.outputs.exists == 'false'
         run: bun run build
 
-      - name: Create release
-        if: steps.check_tag.outputs.exists == 'false'
+      - if: steps.check_tag.outputs.exists == 'false'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ steps.pkg.outputs.version }}
