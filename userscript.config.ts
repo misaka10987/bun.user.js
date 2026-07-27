@@ -4,7 +4,7 @@ export default defineConfig({
   id: 'bun-userscript-template',
   name: 'Bun Userscript Template',
   namespace: 'https://github.com/misaka10987/bun.user.js',
-  version: '0.1.0',
+  version: (await import('./package.json')).version,
   author: {
     name: 'misaka10987',
     email: 'misaka10987@outlook.com',

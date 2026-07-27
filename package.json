@@ -1,12 +1,6 @@
 {
   "name": "template",
-  "description": "",
   "version": "0.1.0",
-  "homepage": "https://github.com/misaka10987/bun.user.js",
-  "author": {
-    "name": "misaka10987",
-    "email": "misaka10987@outlook.com"
-  },
   "module": "src/index.ts",
   "type": "module",
   "private": true,
