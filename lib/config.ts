@@ -1,31 +1,37 @@
-import pack from '../package.json' with { type: 'json' }
 import { type Metadata } from '@jeiea/userscript-metadata'
 
 interface Config {
-  id?: string
-  name?: string
-  namespace?: string
-  version?: string
-  author?: string
-  description?: string
-  match?: string[]
-  grant?: string[]
+  id: string
+  name: string
+  namespace: string
+  version: string
+  author:
+    | {
+        name: string
+        email?: string
+      }
+    | string
+  description: string
+  match: string[]
+  grant: string[]
   meta?: Metadata
 }
 
 export const defineConfig = (config: Config) => {
   return {
-    id: config.id ?? pack.name,
+    id: config.id,
     meta: {
-      '@name': [config.name ?? pack.name],
-      '@namespace': [config.namespace ?? pack.homepage],
-      '@version': [config.version ?? pack.version],
+      '@name': [config.name],
+      '@namespace': [config.namespace],
+      '@version': [config.version],
       '@author': [
-        config.author ?? `${pack.author.name} <${pack.author.email}>`,
+        typeof config.author === 'string'
+          ? config.author
+          : `${config.author.name}${config.author.email ? ` <${config.author.email}>` : ''}`,
       ],
-      '@description': [config.description ?? pack.description],
-      '@match': config.match ?? ['*://*/*'],
-      '@grant': config.grant ?? [],
+      '@description': [config.description],
+      '@match': config.match,
+      '@grant': config.grant,
       ...config.meta,
     },
   }
