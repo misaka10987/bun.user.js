@@ -24,6 +24,10 @@ const meta = render(userscriptConfig.meta)
 
 const body = await readFile('out/index.js')
 
-const file = `dist/${userscriptConfig.id}.user.js`
+const metaFile = `dist/${userscriptConfig.id}.meta.js`
 
-await writeFile(file, meta + '\n' + body)
+const scriptFile = `dist/${userscriptConfig.id}.user.js`
+
+await writeFile(metaFile, meta)
+
+await writeFile(scriptFile, meta + '\n' + body)
