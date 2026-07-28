@@ -17,14 +17,12 @@ jobs:
 
       - uses: oven-sh/setup-bun@v1
 
-      - name: Get version from package.json
-        id: pkg
+      - id: get_version
         run: echo "version=$(jq -r .version package.json)" >> $GITHUB_OUTPUT
 
-      - name: Check if tag exists
-        id: check_tag
+      - id: check_tag
         run: |
-          if git rev-parse "v${{ steps.pkg.outputs.version }}" >/dev/null 2>&1; then
+          if git rev-parse "v${{ steps.get_version.outputs.version }}" >/dev/null 2>&1; then
             echo "exists=true" >> $GITHUB_OUTPUT
           else
             echo "exists=false" >> $GITHUB_OUTPUT
@@ -39,8 +37,9 @@ jobs:
         run: bun run build
 
       - if: steps.check_tag.outputs.exists == 'false'
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
-          tag_name: v${{ steps.pkg.outputs.version }}
-          name: Release v${{ steps.pkg.outputs.version }}
+          tag_name: v${{ steps.get_version.outputs.version }}
+          name: Release v${{ steps.get_version.outputs.version }}
           files: dist/*
+          make_latest: true
