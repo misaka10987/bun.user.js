@@ -1,15 +1,21 @@
 import { defineConfig } from './lib/config'
+import pack from './package.json'
 
 export default defineConfig({
   id: 'bun-userscript-template',
+  version: pack.version,
+
+  github: 'misaka10987/bun.user.js',
+
   name: 'Bun Userscript Template',
-  namespace: 'https://github.com/misaka10987/bun.user.js',
-  version: (await import('./package.json')).version,
+  description: 'Template for building browser userscripts with Bun.',
   author: {
     name: 'misaka10987',
     email: 'misaka10987@outlook.com',
   },
-  description: 'Template for building browser userscripts with Bun.',
+
   match: ['*://*/*'],
   grant: [],
+
+  meta: {},
 })
